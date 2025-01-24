@@ -9,7 +9,7 @@ function model(sequelize) {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    expiresAt: {
+    expires_at: {
         type: DataTypes.DATE,
         allowNull: false,
     },

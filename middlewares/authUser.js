@@ -6,7 +6,7 @@ const secretKey = process.env.JWT_SECRET ;
 
 const authUser = (req, res, next) => {
 
-    const token = req.header('Authorization').split(' ')[1];
+    const token = req.header('Authorization')?.split(' ')[1];
 
   if (!token) {
     return next(new CustomError('Access denied. No token provided.', 403)); 

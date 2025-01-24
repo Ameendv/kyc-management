@@ -39,7 +39,8 @@ const register = async (userData) => {
     try {
         const { username, email, password } = userData;
     
-        const userExists = db.User.findOne({ where: { email } })
+        const userExists = await db.User.findOne({ where: { email } })
+        console.log(userExists)
     
         if (userExists) throw new CustomError(`User with email exists`, 400)
     

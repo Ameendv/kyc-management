@@ -10,6 +10,8 @@ const generateRefreshToken = async (user_id) => {
 
         const existingToken = await db.RefreshToken.findOne({ where: { userId: user_id } });
 
+        console.log(existingToken, 'token')
+
         if (existingToken) {
 
             await existingToken.update({

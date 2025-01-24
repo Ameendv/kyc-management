@@ -30,6 +30,7 @@ app.enable("trust proxy");
 
 // api routes
 app.use(require('./controllers/user.controller'))
+app.use(require('./controllers/admin.controller'))
 
 
 
