@@ -31,7 +31,7 @@ router.post('/login', userLoginSchema, async (req, res, next) => {
     }
 });
 
-router.post('/addKyc',authUser , kycSchema, upload.single('image'), async (req, res, next) => {
+router.post('/addKyc',authUser ,upload.single('image'), kycSchema,  async (req, res, next) => {
     try {
         console.log(req.user, 'asdf')
          const response = await uploadImageToCloudinary(req.file.buffer)

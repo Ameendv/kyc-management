@@ -7,7 +7,7 @@ function model(sequelize) {
   const attributes = {
     username: { type: DataTypes.STRING, allowNull: true },
     role_id: {
-        type: DataTypes.INTEGER, default:1,
+        type: DataTypes.INTEGER, defaultValue:1,
         references: {
             model: db.Roles,
             key: 'id',

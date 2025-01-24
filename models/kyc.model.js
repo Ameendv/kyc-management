@@ -16,6 +16,7 @@ function model(sequelize) {
                 allowNull: false
             }
         },
+    status:{ type: DataTypes.INTEGER, defaultValue: 0, comments: `0: pending, 1: approved, 2: rejected`}
     
   };
 
