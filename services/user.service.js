@@ -72,7 +72,7 @@ const login = async (userData) => {
     }
 
     const accessToken = jwt.sign(
-        { id: userExists.id, role: userExists.role },
+        { id: userExists.id, /* role: userExists.role */ },
         process.env.JWT_SECRET,
         { expiresIn: '1h' }
     );
