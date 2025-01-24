@@ -36,11 +36,11 @@ const addKyc = async (kycDetails) => {
 
 const register = async (userData) => {
     console.log(userData)
-    try {
+    
         const { username, email, password } = userData;
     
         const userExists = await db.User.findOne({ where: { email } })
-        console.log(userExists)
+        // console.log(userExists)
     
         if (userExists) throw new CustomError(`User with email exists`, 400)
     
@@ -50,13 +50,11 @@ const register = async (userData) => {
         const newUser = await db.User.create({ username, email, password: hashPassword, role_id: 1 })
     
         return { username: newUser.username, email: newUser.email }
-    } catch (error) {
-        console.log(error)
-        throw new CustomError(`Something went wrong`, 500)
-    }
+    } 
+    
 
 
-}
+
 
 const login = async (userData) => {
     const { email, password } = userData

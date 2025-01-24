@@ -16,7 +16,7 @@ router.post('/register', userRegisterSchema, async (req, res, next) => {
         const { username, password, email } = req.body
         const response = await register({ username, password, email });
         res.status(200).json({ success: true, user: response });
-    } catch (error) {
+    } catch (error) { 
         next(error)
     }
 });
@@ -31,7 +31,7 @@ router.post('/login', userLoginSchema, async (req, res, next) => {
     }
 });
 
-router.post('/addKyc',authUser ,upload.single('image'), kycSchema,  async (req, res, next) => {
+router.post('/kyc',authUser ,upload.single('image'), kycSchema,  async (req, res, next) => {
     try {
         console.log(req.user, 'asdf')
          const response = await uploadImageToCloudinary(req.file.buffer)
