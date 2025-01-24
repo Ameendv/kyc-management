@@ -2,6 +2,7 @@ const db = require('../configs/db.js')
 const bcrypt = require('bcrypt')
 const CustomError = require('../utils/customError.js')
 const jwt = require('jsonwebtoken')
+const { generateRefreshToken } = require('../utils/generateRefreshToken.js')
 
 const addKyc = async (kycDetails) => {
 
@@ -75,17 +76,19 @@ const login = async (userData) => {
         { expiresIn: '1h' }
     );
 
-    const refreshToken = jwt.sign(
-        { id: userExists.id },
-        process.env.JWT_REFRESH_SECRET,
-        { expiresIn: '7d' }
-    );
+    const refreshToken = await generateRefreshToken(userExists.id)
 
-    await db.RefreshToken.create({
-        userId: userExists.id,
-        token: refreshToken,
-        expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-    });
+    // const refreshToken = jwt.sign(
+    //     { id: userExists.id },
+    //     process.env.JWT_REFRESH_SECRET,
+    //     { expiresIn: '7d' }
+    // );
+
+    // await db.RefreshToken.create({
+    //     userId: userExists.id,
+    //     token: refreshToken,
+    //     expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+    // });
 
     return {
         success: true,
