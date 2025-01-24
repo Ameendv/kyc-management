@@ -6,52 +6,49 @@ const { generateRefreshToken } = require('../utils/generateRefreshToken.js')
 
 const addKyc = async (kycDetails) => {
 
-    try {
 
-        const { name, user_id, doc_url } = kycDetails
 
-        const kycAdded = await db.Kyc.findOne({ where: { user_id } })
+    const { name, user_id, doc_url } = kycDetails
 
-        if (kycAdded) {
-             await db.Kyc.update({name, doc_url}, { where: { user_id } })
-            return {
-                success: true,
-                message: 'KYC details updated successfully',
-            };
-        }
+    const kycAdded = await db.Kyc.findOne({ where: { user_id } })
 
-         await db.Kyc.create(kycDetails)
+    if (kycAdded) {
+        await db.Kyc.update({ name, doc_url }, { where: { user_id } })
         return {
             success: true,
-            message: 'KYC details added successfully',
+            message: 'KYC details updated successfully',
         };
-
-    } catch (error) {
-        console.log(error)
-        throw new CustomError(`Internal server error`, 500)
     }
+
+    await db.Kyc.create(kycDetails)
+    return {
+        success: true,
+        message: 'KYC details added successfully',
+    };
+
+
 }
 
 
 
 const register = async (userData) => {
     console.log(userData)
-    
-        const { username, email, password } = userData;
-    
-        const userExists = await db.User.findOne({ where: { email } })
-        // console.log(userExists)
-    
-        if (userExists) throw new CustomError(`User with email exists`, 400)
-    
-    
-        const hashPassword = await bcrypt.hash(password, 10)
-    
-        const newUser = await db.User.create({ username, email, password: hashPassword, role_id: 1 })
-    
-        return { username: newUser.username, email: newUser.email }
-    } 
-    
+
+    const { username, email, password } = userData;
+
+    const userExists = await db.User.findOne({ where: { email } })
+    // console.log(userExists)
+
+    if (userExists) throw new CustomError(`User with email exists`, 400)
+
+
+    const hashPassword = await bcrypt.hash(password, 10)
+
+    const newUser = await db.User.create({ username, email, password: hashPassword, role_id: 1 })
+
+    return { username: newUser.username, email: newUser.email }
+}
+
 
 
 
