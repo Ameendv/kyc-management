@@ -1,5 +1,5 @@
 const { Op } = require('sequelize')
-const db = require('../configs/db')
+const db = require('../config/db')
 
 const updateKycStatus = async (kycStatus, id) => {
     const status = {

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const db = require('../configs/db');
+const db = require('../config/db');
 
 const generateRefreshToken = async (user_id) => {
     try {

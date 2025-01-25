@@ -4,8 +4,8 @@ const router = express()
 const Joi = require('joi');
 const validateRequest = require('../middlewares/validateRequest');
 const authUser = require('../middlewares/authUser');
-const upload = require('../configs/multer')
-const cloudinary = require('../configs/cloudinary')
+const upload = require('../config/multer')
+const cloudinary = require('../config/cloudinary')
 const streamifier= require('streamifier')
 
 const { register, login, addKyc } = require('../services/user.service');
@@ -74,7 +74,7 @@ const uploadImageToCloudinary = (fileBuffer) => {
 function kycSchema(req, res, next) {
     const schema = Joi.object({
         
-        name: Joi.string().required(),
+        name: Joi.string().trim().min(1).required(),
         
     })
     validateRequest(req, next, schema);
@@ -85,7 +85,7 @@ function userLoginSchema(req, res, next) {
     const schema = Joi.object({
         
         email: Joi.string().email().required(),
-        password: Joi.string().required(),
+        password: Joi.string().trim().min(1).required(),
         
     })
     validateRequest(req, next, schema);
@@ -95,9 +95,9 @@ function userLoginSchema(req, res, next) {
   function userRegisterSchema(req, res, next) {
     const schema = Joi.object({
         
-        username: Joi.string().required(),
+        username: Joi.string().trim().min(1).required(),
         email: Joi.string().email().required(),
-        password: Joi.string().required(),
+        password: Joi.string().trim().min(1).required(),
         
     })
     validateRequest(req, next, schema);

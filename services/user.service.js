@@ -1,4 +1,4 @@
-const db = require('../configs/db.js')
+const db = require('../config/db.js')
 const bcrypt = require('bcrypt')
 const CustomError = require('../utils/customError.js')
 const jwt = require('jsonwebtoken')

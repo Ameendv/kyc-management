@@ -1,4 +1,4 @@
-const db = require('../configs/db'); 
+const db = require('../config/db'); 
 const CustomError = require('../utils/customError'); 
 
 const authorize = (feature_id) => {

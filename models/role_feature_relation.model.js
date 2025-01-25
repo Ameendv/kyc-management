@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const db = require('../configs/db')
+const db = require('../config/db')
 
 module.exports = model;
 
@@ -26,6 +26,10 @@ function model(sequelize) {
     
   };
 
+  const options = {
+    timestamps: true, 
+  };
 
-  return sequelize.define("role_feature_relation", attributes);
+
+  return sequelize.define("role_feature_relation", attributes, options);
 }

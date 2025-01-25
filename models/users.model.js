@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const db = require('../configs/db')
+const db = require('../config/db')
 
 module.exports = model;
 
@@ -18,7 +18,10 @@ function model(sequelize) {
     password: { type: DataTypes.STRING, allowNull: false },
     
   };
+  const options = {
+    timestamps: true, 
+  };
 
 
-  return sequelize.define("users", attributes);
+  return sequelize.define("users", attributes, options);
 }
