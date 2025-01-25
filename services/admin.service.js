@@ -30,10 +30,8 @@ const getKycs = async (filterDatas) => {
     const where = { role_id: 1 }
     const kycWhere = {}
 
-    if (filterDatas.name) kycWhere.name = { [Op.like]: `%${filterDatas.name}%` };
-    if (filterDatas.status) kycWhere.status = status[filterDatas.status]
-
-    console.log(where)
+    if (filterDatas.name &&filterDatas.name!=="") kycWhere.name = { [Op.like]: `%${filterDatas.name}%` };
+    if (filterDatas.status&& filterDatas.status!=="") kycWhere.status = status[filterDatas.status]
 
     const kycData = await db.User.findAll({
         where: where, include: [
