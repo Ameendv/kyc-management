@@ -32,6 +32,7 @@ function AdminKYC() {
       setLoading(false);
     } catch (err) {
       console.error(err);
+      alert(err.response?.data?.message)
       setLoading(false);
     }
   };
@@ -57,6 +58,8 @@ function AdminKYC() {
       // After updating, refetch KYC data to show updated status
       fetchKYCData();
     } catch (err) {
+      alert(err.response?.data?.message)
+
       console.error(err);
     }
   };

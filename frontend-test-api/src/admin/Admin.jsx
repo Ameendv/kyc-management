@@ -23,6 +23,7 @@ function AdminLogin() {
       localStorage.setItem("accessTokenAdmin", res.data.user.body.accessToken);  // Store access token
       navigate("/admin-kyc");  // Redirect to KYC page after successful login
     } catch (err) {
+      alert(err.response?.data?.message)
       console.error(err);
     }
   };

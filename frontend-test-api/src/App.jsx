@@ -42,6 +42,7 @@ function Register() {
       setResponse(res.data);
       navigate("/login")
     } catch (err) {
+      alert(err.response?.data?.message)
       console.error(err);
     }
   };
@@ -73,6 +74,7 @@ function Login() {
       localStorage.setItem("accessToken", res.data.user.body.accessToken);
       navigate("/submit-kyc");
     } catch (err) {
+      alert(err.response?.data?.message)
       console.error(err);
     }
   };
@@ -114,6 +116,7 @@ function SubmitKYC() {
       });
       setResponse(res.data);
     } catch (err) {
+      alert(err.response?.data?.message)
       console.error(err);
     }
   };
