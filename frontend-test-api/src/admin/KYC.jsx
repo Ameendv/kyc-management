@@ -9,7 +9,7 @@ function AdminKYC() {
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null); // State for the selected image
   const [filter, setFilter] = useState({ name: "", status: "" }); // State for filtering
-  const [pagination, setPagination] = useState({ page: 1, pageSize: 10 }); // Pagination state
+  const [pagination, setPagination] = useState({ page: 1, pageSize: 5 }); // Pagination state
   const [defaultStatus, setDefaultStatus] = useState(""); // State for tracking default dropdown value
   const navigate = useNavigate();
 
