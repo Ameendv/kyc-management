@@ -13,7 +13,7 @@ async function initialize() {
   // const { host, port, user, password, database } = config.database;
   const host = process.env.HOST
   const port = process.env.PORT
-  const user = 'root'
+  const user = process.env.USER
   const password = process.env.PASSWORD
   const database = process.env.DATABASE
   const connection = await mysql.createConnection({

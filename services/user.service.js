@@ -41,8 +41,9 @@ const register = async (userData) => {
 
     if (userExists) throw new CustomError(`User with email exists`, 400)
 
+        console.log(typeof process.env.SALT)
 
-    const hashPassword = await bcrypt.hash(password, 10)
+    const hashPassword = await bcrypt.hash(password, parseInt(process.env.SALT))
 
     const newUser = await db.User.create({ username, email, password: hashPassword, role_id: 1 })
 
