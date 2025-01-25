@@ -52,7 +52,7 @@ router.post('/kyc',authUser ,upload.single('image'), kycSchema,  async (req, res
 const uploadImageToCloudinary = (fileBuffer) => {
     return new Promise((resolve, reject) => {
         const uploadStream = cloudinary.uploader.upload_stream(
-            { resource_type: 'auto' },  // Auto-detect file type
+            { resource_type: 'auto', folder: '/nova_kyc' },  // Auto-detect file type
             (error, result) => {
                 if (error) {
                     reject(new Error('Error uploading to Cloudinary: ' + error.message));
