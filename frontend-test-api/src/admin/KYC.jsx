@@ -209,13 +209,17 @@ function AdminKYC() {
         </div>
       )}
 
-      <button onClick={navigateToReports}>Go to Reports</button>
+      <button style={buttonStyle} onClick={navigateToReports}>Go to Reports</button>
       <LogoutButton /> {/* Add the logout button here */}
     </div>
   );
 }
 
 // Modal styles
+const buttonStyle = {
+  background: "blue",
+  color: 'white'
+}
 const modalStyles = {
   position: "fixed",
   top: 0,

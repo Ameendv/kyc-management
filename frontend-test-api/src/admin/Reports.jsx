@@ -6,6 +6,11 @@ import LogoutButton from "../logout";
 
 
 function ReportsPage() {
+
+  const buttonStyle = {
+    background: 'green',
+    color: 'white'
+  }
     
   const [reportData, setReportData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -67,7 +72,7 @@ function ReportsPage() {
 
         </div>
       )}
-      <button onClick={navigateToReports}>Go to Kyc details</button>
+      <button style={buttonStyle} onClick={navigateToReports}>Go to Kyc details</button>
       <LogoutButton  />  {/* Add the logout button here */}
     </div>
   );

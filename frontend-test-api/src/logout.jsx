@@ -4,6 +4,11 @@ import { useNavigate } from "react-router-dom";
 function LogoutButton(props) {
   const navigate = useNavigate();
 
+  const buttonStyle = {
+    background: 'black',
+    color: 'white'
+  }
+
   const handleLogout = () => {
     // Remove the token from localStorage
     console.log('props',props)
@@ -14,7 +19,7 @@ function LogoutButton(props) {
     navigate("/login");
   };
 
-  return <button onClick={handleLogout}>Logout</button>;
+  return <button style={buttonStyle} onClick={handleLogout}>Logout</button>;
 }
 
 export default LogoutButton;
