@@ -2,6 +2,10 @@
 
 This repository contains the backend and a basic frontend implementation for the simplified **Know Your Customer (KYC)**  workflow application, including authentication, role-based access control , KYC management, and reporting features.
 
+## admin credentials(testing)
+email: admin@gmail.com   
+password: 123123123
+
 ## Requirements
 
 Pre requisites
