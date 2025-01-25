@@ -13,10 +13,8 @@ router.post('/refresh', (req, res) => {
         return res.status(401).json({ message: 'Invalid refresh token' });
       }
   
-      // Create new access token
       const accessToken = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
   
-      // Optionally create a new refresh token
       const newRefreshToken = await generateRefreshToken(user.id);
   
       res.json({ accessToken, refreshToken: newRefreshToken }); 

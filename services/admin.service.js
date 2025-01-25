@@ -9,6 +9,7 @@ const updateKycStatus = async (kycStatus, id) => {
     }
 
     const updateStatus = await db.Kyc.update({ status: status[kycStatus] }, { where: { id } })
+
     return { success: true, message: 'Status updated' }
 
 }
@@ -39,7 +40,7 @@ const getKycs = async (filterDatas) => {
             {
                 model: db.Kyc,
                 as: 'kyc',
-                attributes: ['name', 'doc_url', 'status'],
+                attributes: ['name', 'doc_url', 'status', 'id'],
                 where: kycWhere
             },
         ],
@@ -60,15 +61,26 @@ const getReports = async () => {
     // const rejected = await db.Kyc.count({where: {status: 2}})
     // const pending = await db.Kyc.count({where: {status: 0}})
 
-    const [totalUsers, approved, rejected, pending] = await Promise.all([
+    const [totalUsers, approved, rejected, pending, noKycUsers] = await Promise.all([
         db.User.count({ where: { role_id: 1 } }),
         db.Kyc.count({ where: { status: 1 } }),
         db.Kyc.count({ where: { status: 2 } }),
-        db.Kyc.count({ where: { status: 0 } })
+        db.Kyc.count({ where: { status: 0 } }),
+        db.User.count({
+            where: {
+              '$kyc.id$': null,
+              role_id: {[Op.ne]:2}
+            },
+            include: [{
+              model: db.Kyc,
+              required: false,  
+              attributes: ['id', 'status'],  
+            }],
+          })
     ])
     // return response
 
-    return { totalUsers, pending, approved, rejected }
+    return { totalUsers, pending, approved, rejected, noKycUsers }
 }
 
 module.exports = { getKycs, updateKycStatus, getReports }
