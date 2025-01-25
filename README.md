@@ -37,15 +37,16 @@ Pre requisites
 
 **Run** 
 
-cd frontend
+     
+     cd frontend
 
 **Install dependencies**
-
-npm install
+           
+     npm install
 
 **Run Frontend**
 
-npm run dev
+     npm run dev
 
 
 ## API Documentation
