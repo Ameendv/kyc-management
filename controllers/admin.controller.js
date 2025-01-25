@@ -1,7 +1,7 @@
 const express = require('express');
 const authUser = require('../middlewares/authUser');
 const authorize = require('../middlewares/authorize');
-const { getKycs, updateKycStatus } = require('../services/admin.service');
+const { getKycs, updateKycStatus, getReports } = require('../services/admin.service');
 const router = express()
 
 
@@ -22,6 +22,15 @@ router.patch('/kyc/:id/status', authUser, authorize(2), async (req, res, next) =
 
         const response = await updateKycStatus(status, kycId);
         res.status(200).json({ success: response.success, message: response.message });
+    } catch (error) {
+        next(error)
+    }
+});
+
+router.get('/report', authUser, authorize(3), async (req, res, next) => {
+    try {
+        const response = await getReports();
+        res.status(200).json({ success: true, body: response });
     } catch (error) {
         next(error)
     }

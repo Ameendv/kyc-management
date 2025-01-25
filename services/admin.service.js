@@ -1,6 +1,5 @@
 const { Op } = require('sequelize')
 const db = require('../configs/db')
-const CustomError = require('../utils/customError')
 
 const updateKycStatus = async (kycStatus, id) => {
     const status = {
@@ -55,4 +54,21 @@ const getKycs = async (filterDatas) => {
 
 }
 
-module.exports = { getKycs, updateKycStatus }
+const getReports = async () => {
+    // const totalUsers = await db.User.count({where: {role_id: 1}})
+    // const approved = await db.Kyc.count({where: {status: 1}})
+    // const rejected = await db.Kyc.count({where: {status: 2}})
+    // const pending = await db.Kyc.count({where: {status: 0}})
+
+    const [totalUsers, approved, rejected, pending] = await Promise.all([
+        db.User.count({ where: { role_id: 1 } }),
+        db.Kyc.count({ where: { status: 1 } }),
+        db.Kyc.count({ where: { status: 2 } }),
+        db.Kyc.count({ where: { status: 0 } })
+    ])
+    // return response
+
+    return { totalUsers, pending, approved, rejected }
+}
+
+module.exports = { getKycs, updateKycStatus, getReports }
