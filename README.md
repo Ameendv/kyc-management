@@ -19,8 +19,8 @@ Pre requisites
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/kyc-backend.git
-   cd kyc-backend
+   git clone https://github.com/Ameendv/kyc-management.git
+   cd kyc-management
 
 2. **Install dependencies**:
     ```bash
